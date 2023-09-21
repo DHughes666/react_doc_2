@@ -5,6 +5,7 @@ import BucketList from "./Array-update_component";
 import Toolbar2 from "./Button_component";
 import Counter from "./batch_component";
 import RequestTracker from "./batch_component_exercises";
+import MovingDot from "./objectUpdate_component";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
       <hr />
       <hr />
       <RequestTracker />
+      <hr />
+      <hr />
+      <MovingDot />
     </>
 
   )
