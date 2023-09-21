@@ -1,17 +1,26 @@
-import Score from "./objectUpdate_exercise_component";
-import { Canvas } from "./objectUpdate_exercise_component";
+import List1, { List2, List3, ShapeEditor } from "./array_component";
+
 
 const App = () => {
   return (
     <>
-      <Score />
+      <List1 />
       <hr />
       <hr />
-      <Canvas />
+      <List2 />
+      <hr />
+      <hr />
+      <List3 />
+      <hr />
+      <hr />
+      <ShapeEditor />
+
     </>
 
   )
 }
+
+
 
 
 
