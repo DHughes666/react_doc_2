@@ -165,5 +165,111 @@ let initialShapes = [
 
   }
 
+  // Replacing items in an array
+  /**
+   * It is particularly common to want to replace one 
+   * or more items in an array. Assignments like 
+   * arr[0] = 'bird' are mutating the original array, 
+   * so instead you’ll want to use map for this as well.
+
+    To replace an item, create a new array with map. 
+    Inside your map call, you will receive the item index as 
+    the second argument. Use it to decide whether to return the 
+    original item (the first argument) or something else
+   */
+
+let initialCounters = [
+    0, 0, 0
+]
+
+const CounterList = () => {
+    const [counters, setCounters] = useState(initialCounters);
+
+    const handleIncrementClick = (index) => {
+        const nextCounters = counters.map((c, i) => {
+            if (i === index) {
+                // Increment the clicked counter
+                return c + 1;
+            } else {
+                // The rest haven't changed
+                return c;
+            }
+        });
+        setCounters(nextCounters);
+    }
+
+    return (
+        <ul>
+            {counters.map((counter, i) => (
+                <li key={i}>
+                    {counter}{' '} 
+                    <button onClick={() => {
+                        handleIncrementClick(i)
+                    }}>+1</button>
+                </li>
+            ))}
+        </ul>
+    );
+
+}
+
+// Inserting into an array
+
+/**
+ * Sometimes, you may want to insert an item at a particular 
+ * position that’s neither at the beginning nor at the end. 
+ * To do this, you can use the ... array spread syntax together 
+ * with the slice() method. The slice() method lets 
+ * you cut a “slice” of the array. To insert an item, 
+ * you will create an array that spreads the slice before the 
+ * insertion point, then the new item, and then the rest of the original array.
+ */
+
+let nextId2 = 3;
+const initialArtists3 = [
+    {id: 0, name: 'Marta Colvin Andrade'},
+    {id: 1, name: 'Lamidi Olonade Fakeye'},
+    {id: 2, name: 'Louise Nevelson'}
+];
+
+const List4 = () => {
+    const [name, setName] = useState('');
+    const [artists, setArtists] = useState(initialArtists3);
+
+    const handleClick = () => {
+        const insertAt = 1; // Could be any index
+        const nextArtists = [
+            // Items before the insertion point:
+            ...artists.slice(0, insertAt),
+            // New item:
+            {id: nextId2++, name: name},
+            // Items after the insertion point:
+            ...artists.slice(insertAt)
+        ];
+        setArtists(nextArtists);
+        setName('')
+    }
+
+    return (
+        <>
+            <h1>Inspiring sculptors: </h1>
+            <input 
+                value={name}
+                onChange={e => setName(e.target.value)}
+            />
+            <button onClick={handleClick}>
+                Insert
+            </button>
+            <ul>
+                {artists.map(artist => (
+                    <li key={artist.id}>{artist.name}</li>
+                ))}
+            </ul>
+        </>
+    )
+}
+
+
+
 export default List1;
-export { List2, List3, ShapeEditor };
+export { List2, List3, List4, ShapeEditor, CounterList };

@@ -1,4 +1,5 @@
-import List1, { List2, List3, ShapeEditor } from "./array_component";
+import List1, { List2, List3, List4,
+  ShapeEditor, CounterList } from "./array_component";
 
 
 const App = () => {
@@ -14,6 +15,12 @@ const App = () => {
       <hr />
       <hr />
       <ShapeEditor />
+      <hr />
+      <hr />
+      <CounterList />
+      <hr />
+      <hr />
+      <List4 />
 
     </>
 
