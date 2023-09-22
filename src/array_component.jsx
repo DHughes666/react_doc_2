@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useImmer } from "use-immer";
 
 // Adding to an Array
 
@@ -339,21 +340,27 @@ const BucketList = () => {
     const [yourList, setYourList] = useState(initialList2);
 
     const handleToggleMyList = (artworkId, nextSeen) => {
-        const myNextList = [...myList];
-        const artwork = myNextList.find(
-            a => a.id === artworkId
-        );
-        artwork.seen = nextSeen;
-        setMyList(myNextList);
+        setMyList(myList.map(artwork => {
+            if (artwork.id === artworkId) {
+                // Create a *new* object with changes
+                return {...artwork, seen: nextSeen}
+            } else {
+                // No changes
+                return artwork
+            }
+        }))
     }
 
     const handleToggleYourList = (artworkId, nextSeen) => {
-        const yourNextList = [...yourList];
-        const artwork = yourNextList.find(
-            a => a.id === artworkId
-        );
-        artwork.seen = nextSeen;
-        setYourList(yourNextList);
+        setYourList(yourList.map(artwork => {
+            if (artwork.id === artworkId) {
+                // Create a *new* object with changes
+                return {...artwork, seen: nextSeen}
+            } else {
+                // No changes
+                return artwork;
+            }
+        }));
     } 
 
     const ItemList = ({artworks, onToggle}) => {
@@ -396,6 +403,82 @@ const BucketList = () => {
     )
 }
 
+// Write concise update logic with Immer
+
+/**
+ * Updating nested arrays without mutation can get a little bit repetitive. 
+ * Just as with objects:
+    Generally, you shouldn’t need to update state more than a 
+    couple of levels deep. If your state objects are very deep, you might want 
+    to restructure them differently so that they are flat.
+    If you don’t want to change your state structure, you might prefer 
+    to use Immer, which lets you write using the convenient but mutating 
+    syntax and takes care of producing the copies for you.
+ */
+
+
+const BucketList3 = () => {
+    const [myList, updateMyList] = useImmer(initialList2);
+    const [yourList, updateYourList] = useImmer(initialList2);
+
+    const handleToggleMyList = (id, nextSeen) => {
+        updateMyList(draft => {
+            const artwork = draft.find(a => a.id === id);
+            artwork.seen = nextSeen
+        })
+    }
+
+    const handleToggleYourList = (artworkId, nextSeen) => {
+        updateYourList(draft => {
+            const artwork = draft.find(a => a.id === artworkId);
+            artwork.seen = nextSeen;
+        })
+    }
+
+    const ItemList = ({artworks, onToggle}) => {
+        return (
+            <ul>
+                {artworks.map(artwork => (
+                    <li key={artwork.id}>
+                        <label>
+                            <input 
+                                type="checkbox"
+                                checked={artwork.seen}
+                                onChange={e => {
+                                    onToggle(
+                                        artwork.id,
+                                        e.target.checked
+                                    );
+                                }}
+                            />
+                            {artwork.title}
+                        </label>
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+
+    return (
+        <>
+            <h1>Art Bucket List</h1>
+            <h2>My list of art to see: </h2>
+            <ItemList 
+                artworks={myList}
+                onToggle={handleToggleMyList}
+            />
+            <h2>Your list of art to see: </h2>
+            <ItemList 
+                artworks={yourList}
+                onToggle={handleToggleYourList}
+            />
+        </>
+    )
+
+}
+
+
+
 export default List1;
 export { List2, List3, List4, List5, 
-    ShapeEditor, CounterList, BucketList };
+    ShapeEditor, CounterList, BucketList, BucketList3 };
