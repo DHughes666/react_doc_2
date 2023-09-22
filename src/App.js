@@ -1,5 +1,6 @@
 import List1, { List2, List3, List4, List5,
   ShapeEditor, CounterList, BucketList, BucketList3 } from "./array_component";
+import ShoppingCart, { ShoppingCart2 } from "./array_component_exercise";
 
 
 const App = () => {
@@ -30,6 +31,12 @@ const App = () => {
       <hr />
       <hr />
       <BucketList3 />
+      <hr />
+      <hr />
+      <ShoppingCart />
+      <hr />
+      <hr />
+      <ShoppingCart2 />
 
     </>
 
