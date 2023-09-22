@@ -269,7 +269,133 @@ const List4 = () => {
     )
 }
 
+// Making other changes to an array
 
+/**
+ * There are some things you can’t do with 
+ * the spread syntax and non-mutating methods like map() and filter() alone. 
+ * For example, you may want to reverse or sort an array. 
+ * The JavaScript reverse() and sort() methods are mutating 
+ * the original array, so you can’t use them directly.
+ */
+
+
+const initialList = [
+    {id: 0, title: 'Big Bellies'},
+    {id: 1, title: 'Lunar Landscape'},
+    {id: 2, title: 'Terracotta Army'}
+];
+
+const List5 = () => {
+    const [list, setList] = useState(initialList);
+
+    const handleClick = () => {
+        const nextList = [...list];
+        nextList.reverse();
+        setList(nextList)
+    }
+
+    return (
+        <>
+            <button onClick={handleClick}>
+                Reverse
+            </button>
+            <ul>
+                {list.map(artwork => (
+                    <li key={artwork.id}>{artwork.title}</li>
+                ))}
+            </ul>
+        </>
+    );
+}
+
+// Updating objects inside arrays
+
+/**
+ * Objects are not really located “inside” arrays. 
+ * They might appear to be “inside” in code, but each object in 
+ * an array is a separate value, to which the array “points”. 
+ * This is why you need to be careful when changing nested fields like list[0]. 
+ * Another person’s artwork list may point to the same element of the array!
+
+    When updating nested state, you need to create copies 
+    from the point where you want to update, and all the way up to 
+    the top level. Let’s see how this works.
+
+    In this example, two separate artwork lists have 
+    the same initial state. They are supposed to be isolated, 
+    but because of a mutation, their state is accidentally shared, 
+    and checking a box in one list affects the other list:
+ */
+
+const initialList2 = [
+    {id: 0, title: 'Big Bellies', seen: false},
+    {id: 1, title: 'Lunar Landscape', seen: false},
+    {id: 2, title: 'Terracota Army', seen: true},
+]
+
+const BucketList = () => {
+    const [myList, setMyList] = useState(initialList2);
+    const [yourList, setYourList] = useState(initialList2);
+
+    const handleToggleMyList = (artworkId, nextSeen) => {
+        const myNextList = [...myList];
+        const artwork = myNextList.find(
+            a => a.id === artworkId
+        );
+        artwork.seen = nextSeen;
+        setMyList(myNextList);
+    }
+
+    const handleToggleYourList = (artworkId, nextSeen) => {
+        const yourNextList = [...yourList];
+        const artwork = yourNextList.find(
+            a => a.id === artworkId
+        );
+        artwork.seen = nextSeen;
+        setYourList(yourNextList);
+    } 
+
+    const ItemList = ({artworks, onToggle}) => {
+        return (
+            <ul>
+                {artworks.map(artwork => (
+                    <li key={artwork.id}>
+                        <label>
+                        <input 
+                            type="checkbox"
+                            checked={artwork.seen}
+                            onChange={e => {
+                                onToggle(
+                                    artwork.id,
+                                    e.target.checked
+                                );
+                            }}
+                        />
+                        {artwork.title}</label>
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+
+    return (
+        <>
+            <h1>Art Bucket List</h1>
+            <h2>My list of art to see: </h2>
+            <ItemList 
+                artworks={myList}
+                onToggle={handleToggleMyList}
+            />
+            <h2>Your list of art to see: </h2>
+            <ItemList 
+                artworks={yourList}
+                onToggle={handleToggleYourList}
+            />
+        </>
+    )
+}
 
 export default List1;
-export { List2, List3, List4, ShapeEditor, CounterList };
+export { List2, List3, List4, List5, 
+    ShapeEditor, CounterList, BucketList };
