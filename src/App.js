@@ -1,6 +1,7 @@
 import List1, { List2, List3, List4, List5,
   ShapeEditor, CounterList, BucketList, BucketList3 } from "./array_component";
 import ShoppingCart, { ShoppingCart2 } from "./array_component_exercise";
+import { TaskApp } from "./array_component_exercise";
 
 
 const App = () => {
@@ -37,6 +38,9 @@ const App = () => {
       <hr />
       <hr />
       <ShoppingCart2 />
+      <hr />
+      <hr />
+      <TaskApp />
 
     </>
 

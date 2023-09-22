@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import AddTodo from "./AddTodos_component";
+import TaskList from "./TaskList_component";
+
 // Update an item in the shopping cart
 
 /**
@@ -58,9 +61,9 @@ const ShoppingCart = () => {
 const ShoppingCart2 = () => {
     const [products, setProducts] = useState(initialProducts);
 
-    const handleIncreaseClick = (prodctId) => {
+    const handleIncreaseClick = (productId) => {
         setProducts(products.map(product => {
-            if (product.id === prodctId) {
+            if (product.id === productId) {
                 return {...product, count: product.count+1};
             } else {
                 return product;
@@ -69,13 +72,15 @@ const ShoppingCart2 = () => {
     }
 
     const handleDecreaseClick = (productId) => {
-        setProducts(products.map(product => {
+        let nextProducts = products.map(product => {
             if (product.id === productId) {
-                return {...product, count: product.count-1}
+                return {...product, count: product.count-1};
             } else {
                 return product;
             }
-        }))
+        })
+        nextProducts = nextProducts.filter(p => p.count > 0);
+        setProducts(nextProducts);
     }
 
     return (
@@ -100,5 +105,64 @@ const ShoppingCart2 = () => {
     )
 }
 
+// Fix the mutations using non-mutative methods
+
+/**
+ * In this example, all of the event handlers in App.js use mutation. 
+ * As a result, editing and deleting todos doesn’t work. 
+ * Rewrite handleAddTodo, handleChangeTodo, and handleDeleteTodo to 
+ * use the non-mutative methods:
+ */
+
+
+let nextId = 3;
+const initialTodos = [
+    {id: 0, title: 'Buy bread', done: true},
+    {id: 1, title: 'Eat boli', done: false},
+    {id: 2, title: 'Sip alcohol', done: false}
+];
+
+const TaskApp = () => {
+    const [todos, setTodos] = useState(initialTodos);
+
+    const handleAddTodo = (title) => {
+        setTodos([
+            ...todos,
+            {
+                id: nextId++,
+                title: title,
+                done: false
+            }
+        ])
+    }
+
+    const handleChangeTodo = (nextTodo) => {
+        setTodos(todos.map(t => {
+            if (t.id === nextTodo.id) {
+                return nextTodo;
+            } else {
+                return t;
+            }
+        }))
+    }
+
+    const handleDeleteTodo = (todoId) => {
+        setTodos(
+            todos.filter(t => t.id !== todoId)
+        );
+    }
+
+    return (
+        <>
+            <AddTodo onAddTodo={handleAddTodo}/>
+            <TaskList 
+                todos={todos}
+                onChangeTodo={handleChangeTodo}
+                onDeleteTodo={handleDeleteTodo}
+            />
+        </>
+    );
+}
+
 export default ShoppingCart;
-export {ShoppingCart2};
+export {ShoppingCart2, TaskApp};
