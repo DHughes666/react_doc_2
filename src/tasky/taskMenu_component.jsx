@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import AddTask from "./addTask_component";
 import TaskList from "./tasklist_component";
 
@@ -10,34 +10,59 @@ const initialTasks = [
     {id: 2, text: 'Lennon Wall pic', done: false},
 ]
 
-const TaskApp = () => {
-    const [tasks, setTasks] = useState(initialTasks);
-
-    const handleAddTask = (text) => {
-        setTasks([
-            ...tasks,
-            {
-                id: nextId++,
-                text: text,
-                done: false,
-            }
-        ]);
-    }
-
-    const handleChangeTask = (task) => {
-        setTasks(
-            tasks.map(t => {
-                if (t.id === task.id) {
-                    return task;
+const taskReducer2 = (tasks, action) => {
+    switch (action.type) {
+        case 'added': {
+            return [
+                ...tasks,
+                {
+                    id: action.id,
+                    text: action.text,
+                    done: false,
+                }
+            ]
+        }
+        case 'changed': {
+            return tasks.map(t => {
+                if (t.id === action.task.id) {
+                    return action.task;
                 } else {
                     return t;
                 }
             })
-        )
+        }
+        case 'deleted': {
+            return tasks.filter(t => t.id !== action.id);
+        }
+        default: {
+            throw Error('Unknown action: ' + action.type);
+        }
+    }
+}
+
+const TaskApp = () => {
+    const [tasks, dispatch] = useReducer(taskReducer2, initialTasks);
+
+    const handleAddTask = (text) => {
+        dispatch({
+            type: 'added',
+            id: nextId++,
+            text: text,
+        })
+    }
+
+    const handleChangeTask = (task) => {
+        dispatch({
+            type: 'changed',
+            task: task,
+        })
     }
 
     const handleDeleteTask = (taskId) => {
-        setTasks(tasks.filter(t => t.id !== taskId));
+        dispatch({
+            type: 'deleted',
+            id: taskId
+        })
     }
 
     return (

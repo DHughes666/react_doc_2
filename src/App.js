@@ -1,6 +1,8 @@
 import Form, {FormBull, Accordion} from "./state_manage_component";
 import Messenger from "./chapApp/main_menu_component";
 import TaskApp from "./tasky/taskMenu_component";
+import TaskApp2 from "./tasky/taskMenu2_component";
+import Messenger2 from "./tasky/exercise/messenger_component";
 
 
 
@@ -28,6 +30,16 @@ const App = () => {
       <hr />
       <hr />
       <TaskApp />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <TaskApp2 />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <Messenger2 />
       
 
     </>
