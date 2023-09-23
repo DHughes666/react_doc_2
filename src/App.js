@@ -1,46 +1,22 @@
-import List1, { List2, List3, List4, List5,
-  ShapeEditor, CounterList, BucketList, BucketList3 } from "./array_component";
-import ShoppingCart, { ShoppingCart2 } from "./array_component_exercise";
-import { TaskApp } from "./array_component_exercise";
+import MovingDot, { Formy, Formy2, Formy3 } from "./obj_update_component";
+
 
 
 const App = () => {
   return (
     <>
-      <List1 />
+      <Formy />
       <hr />
       <hr />
-      <List2 />
+      <MovingDot />
       <hr />
       <hr />
-      <List3 />
+      <Formy2 />
       <hr />
       <hr />
-      <ShapeEditor />
       <hr />
       <hr />
-      <CounterList />
-      <hr />
-      <hr />
-      <List4 />
-      <hr />
-      <hr />
-      <List5 />
-      <hr />
-      <hr />
-      <BucketList />
-      <hr />
-      <hr />
-      <BucketList3 />
-      <hr />
-      <hr />
-      <ShoppingCart />
-      <hr />
-      <hr />
-      <ShoppingCart2 />
-      <hr />
-      <hr />
-      <TaskApp />
+      <Formy3 />
 
     </>
 

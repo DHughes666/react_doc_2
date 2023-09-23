@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useImmer } from "use-immer";
 import AddTodo from "./AddTodos_component";
 import TaskList from "./TaskList_component";
 
@@ -164,5 +164,51 @@ const TaskApp = () => {
     );
 }
 
+// useImmer for cleaner code
+/**
+ * Fix the mutations using Immer
+ */
+
+const TaskApp2 = () => {
+    const [todos, updateTodos] = useImmer(initialTodos);
+
+    const handleAddTodo = (title) => {
+        updateTodos(draft => {
+            draft.push({
+                id: nextId++,
+                title: title,
+                done: false
+            })
+        })
+    }
+
+    const handleChangeTodo = (nextTodo) => {
+        updateTodos(todos.map(todo => {
+            if (todo.id === nextTodo.id) {
+                return nextTodo;
+            } else {
+                return todo;
+            }
+        }))
+    }
+
+    const handleDeleteTodo = (todoId) => {
+        updateTodos(
+            todos.filter(t => t.id !== todoId)
+        );
+    }
+
+    return (
+        <>
+            <AddTodo onAddTodo={handleAddTodo}/>
+            <TaskList 
+                todos={todos}
+                onChangeTodo={handleChangeTodo}
+                onDeleteTodo={handleDeleteTodo}
+            />
+        </>
+    );
+}
+
 export default ShoppingCart;
-export {ShoppingCart2, TaskApp};
+export {ShoppingCart2, TaskApp, TaskApp2} 
