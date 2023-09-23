@@ -1,37 +1,33 @@
-import MovingDot, { Formy, Formy2, Formy3 } from "./obj_update_component";
-import Scoreboard, {Canvas, Canvas2} from "./obj_update_component_exercises";
+import Form, {FormBull, Accordion} from "./state_manage_component";
+import Messenger from "./chapApp/main_menu_component";
+import TaskApp from "./tasky/taskMenu_component";
 
 
 
 const App = () => {
   return (
     <>
-      <Formy />
-      <hr />
-      <hr />
-      <MovingDot />
-      <hr />
-      <hr />
-      <Formy2 />
+      <Form />
       <hr />
       <hr />
       <hr />
       <hr />
-      <Formy3 />
+      <FormBull />
       <hr />
       <hr />
       <hr />
       <hr />
-      <Scoreboard />
+      <Accordion />
       <hr />
       <hr />
       <hr />
       <hr />
-      <Canvas />
+      <Messenger />
       <hr />
       <hr />
       <hr />
       <hr />
+      <TaskApp />
       
 
     </>
