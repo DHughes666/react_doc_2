@@ -4,6 +4,7 @@ import TaskApp from "./tasky/taskMenu_component";
 import TaskApp2 from "./tasky/taskMenu2_component";
 import Messenger2 from "./tasky/exercise/messenger_component";
 import Messenger2a from "./tasky/exercise2/messenger2_component";
+import Messenger2b from "./tasky/exercise3/messenger3_component";
 
 
 
@@ -42,6 +43,11 @@ const App = () => {
       <hr />
       <hr />
       <Messenger2a />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <Messenger2b />
       
       
 

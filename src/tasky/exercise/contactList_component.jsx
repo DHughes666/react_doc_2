@@ -21,4 +21,3 @@ const ContactList = ({contacts, selectedId, dispatch}) => {
   }
 
 export default ContactList;
-  

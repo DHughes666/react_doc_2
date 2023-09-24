@@ -1,32 +1,27 @@
-const initialState2 = {
+const initialState3 = {
   selectedId: 0,
   message: 'Hello',
 };
 
-const messengerReducer2 = (state, action) => {
+const messengerReducer3 = (state, action) => {
   switch (action.type) {
     case 'changed_selection': {
       return {
         ...state,
         selectedId: action.contactId,
+        message: '',
       };
     }
     case 'edited_message': {
       return {
         ...state,
-        messages: {
-          ...state.messages,
-          [state.selectedId]: action.message
-        }
+        message: action.message,
       };
     }
     case 'sent_message': {
       return {
         ...state,
-        messages: {
-          ...state.messages,
-          [state.selectedId]: ''
-        }
+        clicked: () => {}
       }
     }
     default: {
@@ -35,4 +30,4 @@ const messengerReducer2 = (state, action) => {
   }
 }
 
-export {messengerReducer2, initialState2}
+export {messengerReducer3, initialState3}

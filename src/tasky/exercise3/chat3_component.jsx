@@ -1,5 +1,5 @@
 
-const Chat2 = ({contact, message, dispatch}) => {
+const Chat3 = ({contact, message, dispatch}) => {
   return (
     <section className="chat">
       <textarea
@@ -15,9 +15,9 @@ const Chat2 = ({contact, message, dispatch}) => {
       <br />
       <button
         onClick={(e) => {
-          alert(`Sending "${message}" to ${contact.name}`);
           dispatch({
             type: 'sent_message',
+            clicked: alert(contact.name + ': ' + message)
           })
         }
         }
@@ -28,4 +28,4 @@ const Chat2 = ({contact, message, dispatch}) => {
   );
 }
 
-export default Chat2;
+export default Chat3;
