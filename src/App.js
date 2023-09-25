@@ -1,11 +1,9 @@
 import Form, { Accordion} from "./state_manage_component";
-import Messenger from "./chapApp/main_menu_component";
 import TaskApp from "./tasky/taskMenu_component";
-import TaskApp2 from "./tasky/taskMenu2_component";
-import Messenger2 from "./tasky/exercise/messenger_component";
-import Messenger2a from "./tasky/exercise2/messenger2_component";
 import Messenger2b from "./tasky/exercise3/messenger3_component";
-
+import FilterableList from "./state_management/search_component";
+import Page from "./contexts/main_component";
+import Page2 from "./contexts/main2_component";
 
 
 
@@ -22,32 +20,27 @@ const App = () => {
       <hr />
       <hr />
       <hr />
-      <Messenger />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
       <TaskApp />
       <hr />
       <hr />
       <hr />
       <hr />
-      <TaskApp2 />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-      <Messenger2 />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-      <Messenger2a />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
       <Messenger2b />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <FilterableList />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <Page />
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <Page2 />
       
       
 
