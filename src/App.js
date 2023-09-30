@@ -1,7 +1,7 @@
 import Play from "./interaction/effects/effects-component";
 import AppComp from "./interaction/context-components/context-components-exercises/app-component-exercise";
 import Counter from "./interaction/escape-hatches/refs/refs-component";
-import Stopwatch from "./interaction/escape-hatches/refs/timer-component";
+import { Stopwatch1 } from "./interaction/escape-hatches/refs/timer-component";
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
       <br />
       <br />
       <br />
-      <Stopwatch />
+      <Stopwatch1 />
       
     </>
   )
