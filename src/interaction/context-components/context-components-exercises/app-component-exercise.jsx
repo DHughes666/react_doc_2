@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { places } from "./data-component-exercise";
 import { getImageUrl } from "./utils-component-exercise";
+import { ImageSizeContext } from "./context-component-exercise";
+import { useContext } from "react";
 
 /* 
 In this example, toggling the checkbox changes the 
@@ -21,7 +23,7 @@ const AppComp = () => {
     const imageSize = isLarge ? 150: 100;
 
     return (
-        <>
+        <ImageSizeContext.Provider value={imageSize}>
             <labe>
                 <input 
                 type="checkbox" 
@@ -34,7 +36,7 @@ const AppComp = () => {
             <hr />
             <List imageSize={imageSize} />
             </labe>   
-        </>
+        </ImageSizeContext.Provider>
     )
 }
 
@@ -65,7 +67,8 @@ const Place = ({place, imageSize}) => {
     )
 }
 
-const PlaceImage = ({ place, imageSize }) => {
+const PlaceImage = ({ place }) => {
+    const imageSize = useContext(ImageSizeContext);
     return (
         <img 
             src={getImageUrl(place)}
