@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useTasksDispatch } from "./tasksContext";
 
-const AddTask = ({onAddTask}) => {
+let nextId = 3
+
+const AddTask = () => {
     const [text, setText] = useState('');
+    const dispatch = useTasksDispatch()
+    
     return (
         <>
             <input 
@@ -10,8 +15,12 @@ const AddTask = ({onAddTask}) => {
                 onChange={e => setText(e.target.value)}
             />
             <button onClick={() => {
-                setText('');
-                onAddTask(text);
+                setText("");
+                dispatch({
+                    type: 'added',
+                    id: nextId++,
+                    text: text
+                })
             }}>
                 Add
             </button>
