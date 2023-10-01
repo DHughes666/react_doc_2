@@ -2,6 +2,10 @@ import Play from "./interaction/effects/effects-component";
 import AppComp from "./interaction/context-components/context-components-exercises/app-component-exercise";
 import { Form, Form1, Form2, TodoList, Counter1,
   CatFriends, CatFriends1 } from "./interaction/escape-hatches/refs-dom-manipulation/refs-dom-component";
+import VideoPlayer from "./interaction/escape-hatches/refs-dom-manipulation/refs-dom-exercises/refs-dom-exercise1";
+import Page from "./interaction/escape-hatches/refs-dom-manipulation/refs-dom-exercises/refs-dom-exercise2";
+import CatFriendsExercise from "./interaction/escape-hatches/refs-dom-manipulation/refs-dom-exercises/refs-dom-exercise3";
+
 const App = () => {
   return (
     <>
@@ -38,6 +42,18 @@ const App = () => {
       <br />
       <br />
       <Counter1 />
+      <br />
+      <br />
+      <br />
+      <VideoPlayer />
+      <br />
+      <br />
+      <br />
+      <Page />
+      <br />
+      <br />
+      <br />
+      <CatFriendsExercise />
       
     </>
   )
