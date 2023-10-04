@@ -14,18 +14,22 @@ export default function App() {
   return (
     <>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
+            el: ".swiper-pagination",
           clickable: true,
         }}
-        navigation={true}
+        navigation={{
+            nextEl: ".custom-swiper-button-next",
+            prevEl: ".custom-swiper-button-prev",
+        }}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className=".sliderFeaturedPosts"
       >
         <SwiperSlide>
             <img 

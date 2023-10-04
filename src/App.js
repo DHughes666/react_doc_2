@@ -1,14 +1,10 @@
-import Play from "./interaction/effects/effects-component";
-import Appy from "./ingredients/swiper-comp/pagination/pagination-component";
+import BookList from "./18_React/book";
+
 
 const App = () => {
   return (
     <>
-      <Play />
-      <br />
-      <br />
-      <br />
-      <Appy />
+      <BookList />
       
     </>
   )
